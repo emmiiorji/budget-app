@@ -11,9 +11,7 @@ Rails.application.routes.draw do
   #     resources :transacts, only: %i[new create show]
   # end
   
-  resources :users, only: [] do
-    resources :categories, only: %i[index show new create] do
-      resources :transacts, only: %i[new create show]
-    end
+  resources :categories, only: %i[index show new create destroy] do
+    resources :transacts, only: %i[new create destroy]
   end
 end
