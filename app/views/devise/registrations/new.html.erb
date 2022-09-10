@@ -1,28 +1,47 @@
-<main>
-  <h2>Sign up</h2>
-
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-
-    <%= f.email_field :email, placeholder: "Enter your email...", autofocus: true, autocomplete: "email", :required => true %>
+<section class="user-input-container">
+  <header class="input-container">
+  <nav>
+    <ul class='links'>
+      <li>
+        <%= link_to root_path do %>
+          <i class="fa fa-arrow-left"></i>
+        <% end %>
+      </li>
+      <li>
+        REGISTER
+      </li>
+      <li class='login'>
+        <input type="submit" value='Next' form='form' class='submit'>
+      </li>
+    </ul>
+  </nav>
+  </header>
   
-    <%= f.text_field :first_name, placeholder: "Enter your first name...", autofocus: true, autocomplete: "email", :required => true %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => 'form', :id => 'form' } ) do |f| %>
     
     <%= render "devise/shared/error_messages", resource: resource %>
     
-    <%= f.text_field :last_name, placeholder: "Enter your last name...", autofocus: true, autocomplete: "email", :required => true %>
-
   <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, placeholder: "Enter password...", autocomplete: "new-password", :required => true %>
+    <%= f.text_field :first_name, placeholder: "First Name", autofocus: true, autocomplete: "email", :required => true %>
+  </div>
+  
+  <div class="field">
+    <%= f.text_field :last_name, placeholder: "Last Name", autofocus: true, autocomplete: "email", :required => true %>
   </div>
 
-    <%= f.password_field :password_confirmation, placeholder: "Confirm your password", autocomplete: "new-password", :required => true %>
+  <div class="field">
+    <%= f.email_field :email, placeholder: "Email", autofocus: true, autocomplete: "email", :required => true %>
+  </div>
+  
+  <div class="field">
+    <%= f.password_field :password, placeholder: "Paswword", autocomplete: "new-password", :required => true %>
+  </div>
+  
+  <div class="field">
+    <%= f.password_field :password_confirmation, placeholder: "Confirm Passowrd", autocomplete: "new-password", :required => true %>
+  </div>
 
-    <%= f.submit "Sign up" %>
-    <% end %>
+<% end %>
 
-  <%= render "devise/shared/links" %>
-</main>
+<%= render "devise/shared/links" %>
+</section>
