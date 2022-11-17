@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'category/index'
+  get 'category/create'
+  get 'category/show'
   devise_for :users
   root 'splash_screen#index'
   # get 'splash_screen#index'
