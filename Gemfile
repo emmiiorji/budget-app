@@ -77,6 +77,9 @@ end
 
 gem 'cancancan'
 gem 'devise'
+gem 'cloudinary'
+gem 'fastimage'
+gem 'ffi'
 
 gem 'rubocop', '>= 1.0', '< 2.0'
 gem 'will_paginate', '~> 3.3'
