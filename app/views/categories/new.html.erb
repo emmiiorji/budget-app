@@ -1,0 +1,9 @@
+<section class="section-full-page">
+  <div class="category form-container">
+    <h1>New Recipe</h1>
+    <%= render "form" %>
+    <%= link_to user_categories_path(params[:user_id]) do%>
+      <button class="back-to-categories">Back to Categories</button>
+    <% end %>
+  </div>
+</section>
