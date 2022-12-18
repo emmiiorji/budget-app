@@ -1,12 +1,19 @@
 Rails.application.routes.draw do
-  get 'category/index'
-  get 'category/create'
-  get 'category/show'
   devise_for :users
-  root 'splash_screen#index'
-  # get 'splash_screen#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
+  
   # Defines the root path route ("/")
   # root "articles#index"
+  root 'categories#splash_screen'
+
+  # resources :users, only: %i[show]
+  # resources :categories, only: %i[index show new create]do
+  #     resources :transacts, only: %i[new create show]
+  # end
+  
+  resources :users, only: [] do
+    resources :categories, only: %i[index show new create] do
+      resources :transacts, only: %i[new create show]
+    end
+  end
 end
