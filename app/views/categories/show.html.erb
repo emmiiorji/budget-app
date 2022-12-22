@@ -1,3 +1,50 @@
-<h1>Category#show</h1>
-<p>Find me in app/views/category/show.html.erb</p>
-<h2>Hello World</h2>
+<section class="categories_controllers">
+  <header class="input-container">
+    <nav>
+      <ul class='links'>
+        <li>
+        <%= link_to categories_path do %>
+          <i class="fa fa-arrow-left"></i>
+          <% end %>
+        </li>
+        <li>
+          DETAILS
+        </li>
+        <li>
+          <i class="fa fa-bars"></i>
+        </li>
+      </ul>
+    </nav>
+  </header>
+ <section class="category-lists-wrapper details ">
+    <div class='desc'>
+      <%= image_tag(@category.icon, class:'list_image') %>
+      <span>
+        <h2><%= @category.name %></h2>
+      </span>
+    </div>
+    <hr>
+    <% @transacts.each do |transact| %> 
+    <div class='transaction'>
+      <span>
+        <h3><%= transact.name %></h3>
+        <small><%= transact.created_at.to_date.strftime("%d %b, %Y") %></small>
+      </span>
+      <span>
+         <%= button_to "Remove", category_transact_path(@category,transact), method: :delete, class: 'delete-transaction' %>
+      </span>
+    </div>
+    <hr>
+    
+   <% end %>
+   <div class='payment'>
+      <h4>TOTAL PAYMENT</h4>
+      <p>$<%= @category.transacts.sum(:amount) || '0.00' %></p>
+    </div>
+    <%= button_to "Delete Category", category_path, method: :delete, class: 'category-btn' %>
+
+  </section> 
+  <div class='category-footer'>
+    <%= button_to "Add New Transaction", new_category_transact_path(@category), method: :get, class: 'category-btn' %>
+  </div>
+</section>
