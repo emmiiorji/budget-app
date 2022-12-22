@@ -1,0 +1,18 @@
+<main>
+  <h1>Category</h1>
+  <% @categories.each do |category| %> 
+    <div class="category">
+      <div class="category-icon">
+        <%= image_tag category.icon, size: "100x100" %>
+      </div>
+      <div class="category-name">
+        <%= category.name %>
+      </div>
+      <div class="category-amount">
+        <%= category.total_amount %>
+      </div>
+    </div>
+  <% end %>
+  <%= button_to 'Add New Category', new_user_category_path(@current_user.id), method: :get %>
+</main>
+<%# button_to 'Sign Out', destroy_user_session_path, method: :delete %>
