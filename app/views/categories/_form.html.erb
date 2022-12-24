@@ -1,15 +1,33 @@
-<%= form_with model: @category, url: user_categories_path(params[:user_id]), method: :post, local: true do |form| %>
-
-  <%= form.text_field :name, placeholder: "Enter name of category...", :required => true %>
-
-  <%= form.text_area :description, placeholder: "Enter category's description...", :required => true %>
-  
-  <div class="label-container">
-    <%= form.label :icon, class: "label" %>
-    <%= form.file_field :icon, :required => true %>
+<%= form_with model: category, url: categories_path, :html => {:class => 'form', :id => 'form' }  do |form| %>
+  <div class="field">
+    <%= form.text_field :name, autofocus: true, autocomplete: "text", placeholder: "Enter category name", :required => true %>
+    <% category.errors.full_messages_for(:name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= form.text_area :description, autofocus: true, placeholder: "Enter category's description...", :required => true %>
+    <% category.errors.full_messages_for(:description).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= form.number_field :amount, autofocus: true, placeholder: "Enter amount", :required => true %>
+    <% category.errors.full_messages_for(:description).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
   </div>
 
+  <div class="field">
+    <%= form.label :icon, class: "label" %>
+    <%= form.file_field :icon, :required => true %>
+      <% category.errors.full_messages_for(:icon).each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+    
 
-  <%= form.submit class: "submit-button" %>
+  <div class="actions">
+    <%= form.submit "Add", class: 'category-btn'%>
+  </div>
 <% end %>
-  
