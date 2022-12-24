@@ -1,9 +1,22 @@
-<section class="section-full-page">
-  <div class="category form-container">
-    <h1>New Category</h1>
-    <%= render "form" %>
-    <%= link_to user_categories_path(params[:user_id]) do%>
-      <button class="back-to-categories">Back to Categories</button>
-    <% end %>
-  </div>
+<section class="user-input-container">
+  <header class="input-container">
+    <nav>
+      <ul class='links'>
+        <li>
+        <%= link_to categories_path do %>
+          <i class="fa fa-arrow-left"></i>
+          <% end %>
+        </li>
+        <li>
+          ADD CATERGORY
+        </li>
+        <li class='login'>
+          <input type="submit" value='Add' form='form' class='submit'>
+        </li>
+      </ul>
+    </nav>
+  </header>
+    <%= render "form", category: @category %>
+  
+ 
 </section>
