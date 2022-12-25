@@ -37,6 +37,24 @@ class TransactsController < ApplicationController
     end
   end
 
+  def destroy
+    @transact = Transact.where(author_id: current_user.id).where(id: params[:id])[0]
+    
+    # If category does not exist, redirect to categories page
+    if @transact.nil?
+      flash[:error] = "User did not create this transaction"
+      redirect_to categories_path and return
+    end
+
+    if @transact.destroy
+      flash[:success] = 'Transaction was successfully deleted.'
+      redirect_to category_path(params[:category_id]) and return
+    else
+      flash[:error] = 'Something went wrong'
+      render :show and return
+    end
+  end
+
   private
 
   def transact_params
