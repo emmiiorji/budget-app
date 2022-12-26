@@ -35,6 +35,15 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    # Get category and its transacts as long as it was created by the current user
+    @category = Category.includes(:transacts).where(user_id: current_user.id).where(id: params[:id])[0]
+    
+    # If category does not exist, redirect to categories page
+    if @category.nil?
+      flash[:error] = "User did not create this category"
+      redirect_to categories_path
+    end
+    @transacts = @category.transacts.order(created_at: :desc)
   end
 
   def splash_screen
