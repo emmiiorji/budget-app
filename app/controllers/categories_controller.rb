@@ -15,16 +15,21 @@ class CategoriesController < ApplicationController
     icon = params[:category][:icon]
     dimensions = FastImage.size(icon.tempfile.path)
 
+    if !icon.original_filename.end_with?('.png', '.jpg', '.jpeg', '.gif')
+      flash[:error] = "Icon must be a PNG, JPG, JPEG, or GIF"
+      redirect_to new_user_category_path(params[:user_id]) and return
+    end
     # Upload icon to Cloudinary
     cloudinary_icon = Cloudinary::Uploader.upload(icon.tempfile.path)
-    params[:category][:icon] = cloudinary_icon
+    params[:category][:icon] = cloudinary_icon['url']
 
     category = Category.new(category_params)
     category.user_id = current_user.id
     if category.save
       flash[:success] = "Category created!"
-      redirect_to user_categories_path(params[:user_id])
+      redirect_to categories_path
     else
+      flash[:error] = 'Something went wrong'
       render :new, locals: { category: }
     end
   end
@@ -42,6 +47,8 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:name, :icon, :description, :user_id)
+    category = params.require(:category).permit(:name, :icon, :description)
+    category[:user] = current_user
+    category
   end
 end
