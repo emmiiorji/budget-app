@@ -53,6 +53,25 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def destroy
+    # Get category as long as it was created by the current user
+    @category = Category.where(user_id: current_user.id).where(id: params[:id])[0]
+    
+    # If category does not exist, redirect to categories page
+    if @category.nil?
+      flash[:error] = "User did not create this category"
+      redirect_to categories_path
+    end
+
+    if @category.destroy
+      flash[:success] = 'category was successfully deleted.'
+      redirect_to categories_path
+    else
+      flash[:error] = 'Something went wrong'
+      render :show
+    end
+  end
+
   private
 
   def category_params
