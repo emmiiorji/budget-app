@@ -38,7 +38,7 @@ class CategoriesController < ApplicationController
   end
 
   def splash_screen
-    unless !current_user # If user is signed in, redirect to categories page
+    if user_signed_in? # If user is signed in, redirect to categories page
       redirect_to categories_path
       return
     end
