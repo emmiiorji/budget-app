@@ -12,7 +12,6 @@ class CategoriesController < ApplicationController
 
   def create
     icon = params[:category][:icon]
-    dimensions = FastImage.size(icon.tempfile.path)
 
     unless icon.original_filename.end_with?('.png', '.jpg', '.jpeg', '.gif')
       flash[:error] = 'Icon must be a PNG, JPG, JPEG, or GIF'
