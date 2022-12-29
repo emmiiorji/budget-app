@@ -3,10 +3,10 @@ class TransactsController < ApplicationController
 
   def new
     @category = Category.where(user_id: current_user.id).where(id: params[:category_id])[0]
-    
+
     # If category does not exist, redirect to categories page
     if @category.nil?
-      flash[:error] = "User did not create this category"
+      flash[:error] = 'User did not create this category'
       redirect_to categories_path
     end
 
@@ -15,12 +15,11 @@ class TransactsController < ApplicationController
   end
 
   def create
-
     @category = Category.where(user_id: current_user.id).where(id: params[:category_id])[0]
-    
+
     # If category does not exist, redirect to categories page
     if @category.nil?
-      flash[:error] = "User did not create this category"
+      flash[:error] = 'User did not create this category'
       redirect_to categories_path
     end
 
@@ -29,20 +28,20 @@ class TransactsController < ApplicationController
     if @transact.save
       @category.transacts << @transact
       # CategoryTransacts.create(category_id: @category.id, transact_id: @transact.id)
-      flash[:success] = "Transaction created successfully!"
+      flash[:success] = 'Transaction created successfully!'
       redirect_to category_path(@category)
     else
-      flash[:error] = "Transaction could not be created"
+      flash[:error] = 'Transaction could not be created'
       render :new, locals: { category: @category }
     end
   end
 
   def destroy
     @transact = Transact.where(author_id: current_user.id).where(id: params[:id])[0]
-    
+
     # If category does not exist, redirect to categories page
     if @transact.nil?
-      flash[:error] = "User did not create this transaction"
+      flash[:error] = 'User did not create this transaction'
       redirect_to categories_path and return
     end
 

@@ -1,5 +1,4 @@
 class CategoriesController < ApplicationController
-
   before_action :authenticate_user!, except: [:splash_screen]
 
   def index
@@ -15,8 +14,8 @@ class CategoriesController < ApplicationController
     icon = params[:category][:icon]
     dimensions = FastImage.size(icon.tempfile.path)
 
-    if !icon.original_filename.end_with?('.png', '.jpg', '.jpeg', '.gif')
-      flash[:error] = "Icon must be a PNG, JPG, JPEG, or GIF"
+    unless icon.original_filename.end_with?('.png', '.jpg', '.jpeg', '.gif')
+      flash[:error] = 'Icon must be a PNG, JPG, JPEG, or GIF'
       redirect_to new_user_category_path(params[:user_id]) and return
     end
     # Upload icon to Cloudinary
@@ -26,7 +25,7 @@ class CategoriesController < ApplicationController
     category = Category.new(category_params)
     category.user_id = current_user.id
     if category.save
-      flash[:success] = "Category created!"
+      flash[:success] = 'Category created!'
       redirect_to categories_path
     else
       flash[:error] = 'Something went wrong'
@@ -37,29 +36,29 @@ class CategoriesController < ApplicationController
   def show
     # Get category and its transacts as long as it was created by the current user
     @category = Category.includes(:transacts).where(user_id: current_user.id).where(id: params[:id])[0]
-    
+
     # If category does not exist, redirect to categories page
     if @category.nil?
-      flash[:error] = "User did not create this category"
+      flash[:error] = 'User did not create this category'
       redirect_to categories_path
     end
     @transacts = @category.transacts.order(created_at: :desc)
   end
 
   def splash_screen
-    if user_signed_in? # If user is signed in, redirect to categories page
-      redirect_to categories_path
-      return
-    end
+    return unless user_signed_in? # If user is signed in, redirect to categories page
+
+    redirect_to categories_path
+    nil
   end
 
   def destroy
     # Get category as long as it was created by the current user
     @category = Category.where(user_id: current_user.id).where(id: params[:id])[0]
-    
+
     # If category does not exist, redirect to categories page
     if @category.nil?
-      flash[:error] = "User did not create this category"
+      flash[:error] = 'User did not create this category'
       redirect_to categories_path
     end
 
