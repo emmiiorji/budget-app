@@ -68,13 +68,14 @@ A mobile web application where you can manage your budget: you have a list of tr
 
 <!-- LIVE DEMO -->
 
-<!-- ## 🚀 Live Demo <a name="live-demo"></a>
+## 🚀 Live Demo <a name="live-demo"></a>
 
-> Add a link to your deployed project.
+<!-- > Add a link to your deployed project. -->
 
-- [Live Demo Link](https://yourdeployedapplicationlink.com)
+- [Live Demo Link](https://budget-app-8nzw.onrender.com)
+- [Video Demo](https://drive.google.com/file/d/1uohN6Cv9ICPsFAlDZCYO9FFxizjAEyCf/view?usp=sharing)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- Database Entity Relationship Diagram-->
 
@@ -193,7 +194,7 @@ If you like this project, please give a ⭐️!
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I would like to thank [Microverse](https://www.microverse.org/) for the guide
+Shout out to [Gregoire Vella on Behance](https://www.behance.net/gregoirevella) for the original design idea.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
