@@ -1,0 +1,47 @@
+<section class="user-input-container">
+  <header class="input-container">
+  <nav>
+    <ul class='links'>
+      <li>
+        <%= link_to root_path do %>
+          <i class="fa fa-arrow-left"></i>
+        <% end %>
+      </li>
+      <li>
+        REGISTER
+      </li>
+      <li class='login'>
+        <input type="submit" value='Next' form='form' class='submit'>
+      </li>
+    </ul>
+  </nav>
+  </header>
+  
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => 'form', :id => 'form' } ) do |f| %>
+    
+    <%= render "devise/shared/error_messages", resource: resource %>
+    
+  <div class="field">
+    <%= f.text_field :first_name, placeholder: "First Name", autofocus: true, autocomplete: "email", :required => true %>
+  </div>
+  
+  <div class="field">
+    <%= f.text_field :last_name, placeholder: "Last Name", autofocus: true, autocomplete: "email", :required => true %>
+  </div>
+
+  <div class="field">
+    <%= f.email_field :email, placeholder: "Email", autofocus: true, autocomplete: "email", :required => true %>
+  </div>
+  
+  <div class="field">
+    <%= f.password_field :password, placeholder: "Paswword", autocomplete: "new-password", :required => true %>
+  </div>
+  
+  <div class="field">
+    <%= f.password_field :password_confirmation, placeholder: "Confirm Passowrd", autocomplete: "new-password", :required => true %>
+  </div>
+
+<% end %>
+
+<%= render "devise/shared/links" %>
+</section>
