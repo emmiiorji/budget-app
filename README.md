@@ -151,8 +151,6 @@ You can deploy this project using:
 
 ## 👥 Author <a name="authors"></a>
 
-> Mention all of the collaborators of this project.
-
 👤 **Emmanuel Orji-Ihuoma**
 
 - GitHub: [@emmiiorji](https://github.com/emmiiorji)
@@ -164,8 +162,6 @@ You can deploy this project using:
 <!-- FUTURE FEATURES -->
 
 ## 🔭 Future Features <a name="future-features"></a>
-
-> Describe 1 - 3 features you will add to the project.
 
 - [ ] **Allow transaction to have more than one category**
 - [ ] **Improve user interface**
